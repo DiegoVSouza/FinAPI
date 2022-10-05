@@ -1,12 +1,12 @@
 {
   "username": "postgres",
-  "password": "docker",
+  "password": "123",
 
   "name": "default",
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "database": "fin_api",
+  "database": "queries_challenge",
   "entities": [
     "./src/modules/**/entities/*.ts"
   ],
