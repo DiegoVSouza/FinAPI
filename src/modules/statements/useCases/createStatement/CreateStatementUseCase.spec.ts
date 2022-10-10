@@ -1,6 +1,7 @@
 import { InMemoryUsersRepository } from "../../../users/repositories/in-memory/InMemoryUsersRepository";
 import { CreateUserUseCase } from "../../../users/useCases/createUser/CreateUserUseCase";
 import { InMemoryStatementsRepository } from "../../repositories/in-memory/InMemoryStatementsRepository";
+import { CreateStatementController } from "./CreateStatementController";
 import { CreateStatementError } from "./CreateStatementError";
 import { CreateStatementUseCase } from "./CreateStatementUseCase";
 
@@ -13,11 +14,13 @@ let usersRepository: InMemoryUsersRepository;
 let statementsRepository: InMemoryStatementsRepository;
 let createStatementUseCase: CreateStatementUseCase;
 let createUserUseCase: CreateUserUseCase;
+let createUserController: CreateStatementController;
 describe("Authenticate User", () => {
     beforeEach(() => {
         usersRepository = new InMemoryUsersRepository();
         statementsRepository = new InMemoryStatementsRepository()
         createStatementUseCase = new CreateStatementUseCase(usersRepository, statementsRepository);
+        createUserController = new CreateStatementController()
         createUserUseCase = new CreateUserUseCase(usersRepository)
     });
     it("should be able to create a statement", async () => {
