@@ -5,12 +5,6 @@ import { IStatementsRepository } from "../../repositories/IStatementsRepository"
 import { CreateStatementError } from "./CreateStatementError";
 import { ICreateStatementDTO } from "./ICreateStatementDTO";
 
-enum OperationType {
-  DEPOSIT = 'deposit',
-  WITHDRAW = 'withdraw',
-  TRANSFER = 'transfer'
-}
-
 @injectable()
 export class CreateStatementUseCase {
   constructor(
@@ -28,8 +22,6 @@ export class CreateStatementUseCase {
     const user = await this.usersRepository.findById(userId);
     const recipientUser = await this.usersRepository.findById(recipient_id as string);
 
-
-
     if (!user) {
       throw new CreateStatementError.UserNotFound();
     }
@@ -46,10 +38,9 @@ export class CreateStatementUseCase {
     }
 
     if (type === 'transfer') {
-      var DEPOSIT = 'deposit' as OperationType
-      const test = await this.statementsRepository.create({
+      await this.statementsRepository.create({
         user_id: recipient_id,
-        type: DEPOSIT,
+        type,
         amount,
         description
       })
